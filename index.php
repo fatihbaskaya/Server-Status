@@ -14,13 +14,7 @@ $servers = array(
         'port' => 21,
         'info' => 'Hosted by Fatih Baskaya',
         'purpose' => 'Counter-Strike 1.6 Server'
-    ),
-    'mc.hypixel.net' => array(
-        'ip' => 'mc.hypixel.net',
-        'port' => 21,
-        'info' => 'Hosted by Hypixel Network',
-        'purpose' => 'Minecraft Server'
-    ),
+    )
     'fatihbaskaya.com' => array(
         'ip' => 'fatihbaskaya.com',
         'port' => 443,
@@ -149,7 +143,12 @@ foreach ($servers as $name => $info) {
                             </div>
                             <div class="ping__box__line">
                                 <span class="ping__box__line__title">PING</span>
-                                <span class="ping__box__line__content"><?php exec("ping -c 1 -W 1 ".$server['ip'], $output, $status); echo $output[5]; unset($output);?></span>
+                                <span class="ping__box__line__content"><?php exec("ping -n 2 ".$server['ip'], $output, $status);
+                                if ($status == 0){
+                                    echo $output[8];
+                                    unset($output);
+                                } 
+                                ?></span>
                             </div>
                         </div>
                         
